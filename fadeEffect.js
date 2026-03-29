@@ -11,3 +11,16 @@ window.addEventListener('load', () => {
 
       document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
     });
+
+    /*Popup for email*/
+  function toggleTooltip(el) {
+    const tooltip = el.previousElementSibling;
+    tooltip.classList.toggle('show');
+  }
+
+  // Close tooltip when clicking anywhere else
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.icon-wrapper')) {
+      document.querySelectorAll('.tooltip').forEach(t => t.classList.remove('show'));
+    }
+  });
