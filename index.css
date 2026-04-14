@@ -70,27 +70,12 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 220px; /* fixed height instead of 100vh */
-  width: 220px; /* fixed width */
+  height: 250px; /* fixed height instead of 100vh */
+  width: 250px; /* fixed width */
   position: relative;
   z-index: 10;
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.small-frame::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("https://i.ibb.co/9HTDfqCr/gold-vintage-picture-frame-37499-255-removebg-preview.png");
-  background-size: contain; /* scales to fit the box */
-  background-repeat: no-repeat;
-  background-position: center;
-  transform: rotate(90deg);
-  z-index: -1;
 }
 
 .content-wrapper {
@@ -128,7 +113,7 @@ body {
   width: 100%;
   height: 100%;
   background-image: url("https://i.ibb.co/9HTDfqCr/gold-vintage-picture-frame-37499-255-removebg-preview.png");
-  background-size: 720px 710px; /* Adjust size to fit your content */
+  background-size: 705px 710px; /* Adjust size to fit your content */
   background-repeat: no-repeat;
   background-position: center;
   transform: rotate(90deg);
@@ -189,7 +174,6 @@ body {
 
 .title {
   padding: 1px;
-  backdrop-filter: blur(5px);
   text-align: center;
   margin-top: -8px; /* Remove top padding to keep it perfectly centered */
   margin-bottom: 0; /* Remove bottom margin to keep it perfectly centered */
@@ -198,20 +182,63 @@ body {
 
 .infomation-words {
   padding: 3px;
-  backdrop-filter: blur(3px);
   text-align: center;
   margin-top: -15px; /* Remove top padding to keep it perfectly centered */
   font-weight: 700;
 }
 
+.caption-text {
+  margin-top: -8px; /* Adjust as needed to position the caption */
+}
+
+.grid-container-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  place-items: center;
+}
+
+.frame-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: -1px;
+}
+
+.frame-caption {
+  text-align: center;
+  color: white;
+  font-weight: 500;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  max-width: 220px; /* matches frame width */
+  font-size: 0.9rem;
+}
+
+.small-frame::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(90deg); /* center + rotate */
+  width: 140%; /* bigger than the box to crop the whitespace */
+  height: 140%;
+  background-image: url("https://i.ibb.co/9HTDfqCr/gold-vintage-picture-frame-37499-255-removebg-preview.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: -1;
+}
+
 .paragraph {
   text-align: center;
-  margin: 3px 300px; /* Add horizontal padding for better readability */
+  max-width: 410px; /* controls width inside frame */
+  margin: 10px auto; /* centers it */
+  padding: 0 20px; /* prevents text touching edges */
   font-weight: 500;
-  backdrop-filter: blur(
-    5px
-  ); /* Optional: adds a subtle blur behind the text for better contrast */
-  min-width: 400px;
+}
+
+.skills-paragraph {
+  margin-bottom: -15px;
 }
 
 .button-container {
@@ -262,4 +289,50 @@ footer {
 .fade-in-visible {
   opacity: 1 !important;
   transform: translateY(0) !important;
+}
+
+@media (max-width: 768px) {
+  .grid-container-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .content-wrapper {
+    min-height: 100vh;
+    height: auto;
+    padding: 80px 0 60px;
+    justify-content: center;
+  }
+
+  html,
+  body {
+    overflow: auto;
+  }
+
+  /* Keep the frame its original size — don't scale it down */
+  .contact-wrapper::before {
+    background-size: 705px 700px;
+    width: 705px;
+    height: 700px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  /* Let the text scroll freely on top of the fixed-size frame */
+  .contact-wrapper {
+    height: 100vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    align-items: center;
+    padding: 60px 20px;
+  }
+
+  /* Constrain paragraph to fit inside the visible frame area on mobile */
+  .paragraph {
+    min-width: unset;
+    max-width: 400px;
+    margin: 3px auto;
+    font-size: 0.9rem;
+    backdrop-filter: blur(5px);
+  }
 }
