@@ -1,0 +1,129 @@
+/* ============================================================
+   frame.css — for pages with centered frame layout
+   Links: contacts.html, aboutMe.html, skills.html, choose.html
+   Usage: <link rel="stylesheet" href="index.css">
+          <link rel="stylesheet" href="frame.css">
+   ============================================================ */
+
+/* Centered wrapper for frame pages */
+.content-wrapper,
+.contact-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Gold frame decoration (rotated behind content) */
+.contact-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://i.ibb.co/9HTDfqCr/gold-vintage-picture-frame-37499-255-removebg-preview.png");
+  background-size: 705px 710px;
+  background-repeat: no-repeat;
+  background-position: center;
+  transform: rotate(90deg);
+  z-index: -1;
+}
+
+/* Text paragraph inside frame */
+.paragraph {
+  text-align: center;
+  max-width: 410px;
+  margin: 10px auto;
+  padding: 0 20px;
+  font-weight: 500;
+}
+
+.skills-paragraph {
+  margin-bottom: -15px;
+}
+
+/* Contact icons */
+.icon-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip {
+  display: none;
+  position: absolute;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #d2a679;
+  border: 2px solid #964b00;
+  color: #3e1f00;
+  padding: 8px 14px;
+  border-radius: 10px;
+  white-space: nowrap;
+  font-size: 0.9rem;
+  z-index: 999;
+  opacity: 1;
+}
+
+.tooltip.show {
+  display: block;
+}
+
+.icon-link {
+  color: white;
+  font-size: 1.5rem;
+  margin: 13px;
+  margin-top: 20px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background-color: #5d2e00;
+  border-radius: 50%;
+  border: 2px solid #964b00;
+}
+
+.icon-link:hover {
+  background-color: #d2a679;
+  color: #3e1f00;
+  transform: scale(1.1) translateY(-3px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .contact-wrapper::before {
+    background-size: 705px 700px;
+    width: 705px;
+    height: 700px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  .contact-wrapper {
+    height: 100vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    align-items: center;
+    padding: 60px 20px;
+  }
+
+  .paragraph {
+    min-width: unset;
+    max-width: 400px;
+    margin: 3px auto;
+    font-size: 0.9rem;
+    backdrop-filter: blur(5px);
+  }
+}

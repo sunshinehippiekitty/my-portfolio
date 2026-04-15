@@ -1,0 +1,114 @@
+/* ============================================================
+   scrollable.css — for pages with scrollable card grids
+   Links: projects.html, experience.html
+   Usage: <link rel="stylesheet" href="index.css">
+          <link rel="stylesheet" href="scrollable.css">
+   ============================================================ */
+
+/* Allow scrolling on these pages */
+html,
+body {
+  overflow: auto !important;
+  height: auto !important;
+}
+
+/* Content wrapper expands with content */
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  min-height: 100vh;
+  width: 100%;
+  padding: 80px 20px 40px;
+  position: relative;
+  z-index: 10;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* 3-column card grid */
+.grid-container-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  place-items: center;
+}
+
+/* Individual card */
+.frame-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: -1px;
+}
+
+/* Frame around image */
+.small-frame {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
+  width: 250px;
+  position: relative;
+  z-index: 10;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.small-frame::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(90deg);
+  width: 140%;
+  height: 140%;
+  background-image: url("https://i.ibb.co/9HTDfqCr/gold-vintage-picture-frame-37499-255-removebg-preview.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: -1;
+}
+
+.card-img-top {
+  height: 150px;
+  width: 215px;
+  object-fit: cover;
+  border: 2px solid #8b4513;
+  border-radius: 5px;
+}
+
+.caption-text {
+  margin-top: -8px;
+}
+
+.frame-caption {
+  text-align: center;
+  color: white;
+  font-weight: 500;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  max-width: 220px;
+  font-size: 0.9rem;
+}
+
+/* Static footer sits after content */
+footer {
+  position: static !important;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  margin-bottom: -30px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .grid-container-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .content-wrapper {
+    padding: 80px 0 40px;
+  }
+}
